@@ -1,81 +1,109 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { NavLink, Link } from 'react-router-dom'
 
 export default function Navbar() {
+  let [settingData, SetSettingData] = useState({
+    siteName: import.meta.env.VITE_APP_SITE_NAME,
+    map1: import.meta.env.VITE_APP_MAP1,
+    address: import.meta.env.VITE_APP_ADDRESS,
+    email: import.meta.env.VITE_APP_EMAIL,
+    phone: import.meta.env.VITE_APP_PHONE,
+    whatsapp: import.meta.env.VITE_APP_WHATSAPP,
+    facebook: import.meta.env.VITE_APP_FACEBOOK,
+    twitter: import.meta.env.VITE_APP_TWITTER,
+    linkedin: import.meta.env.VITE_APP_LINKEDIN,
+    instagram: import.meta.env.VITE_APP_INSTAGRAM,
+    youtube: import.meta.env.VITE_APP_YOUTUBE
+  })
+
   return (
-     <header id="header" className="header fixed-top">
+    <header id="header" className="header fixed-top">
 
-    <div className="topbar d-flex align-items-center dark-background">
-      <div className="container d-flex justify-content-center justify-content-md-between">
-        <div className="contact-info d-flex align-items-center">
-          <i className="bi bi-envelope d-flex align-items-center"><a
-              href="mailto:contact@example.com">contact@example.com</a></i>
-          <i className="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
-        </div>
-        <div className="social-links d-none d-md-flex align-items-center">
-          <a href="#!" className="twitter"><i className="bi bi-twitter-x"></i></a>
-          <a href="#!" className="facebook"><i className="bi bi-facebook"></i></a>
-          <a href="#!" className="instagram"><i className="bi bi-instagram"></i></a>
-          <a href="#!" className="linkedin"><i className="bi bi-linkedin"></i></a>
+      <div className="topbar d-flex align-items-center dark-background">
+        <div className="container d-flex justify-content-center justify-content-md-between">
+          <div className="contact-info d-flex align-items-center">
+
+            <i className="ms-2 bi bi-geo-alt d-flex align-items-center">
+              <Link href={`${settingData.map1}`} target='_blank'>{settingData.address}</Link>
+            </i>
+
+            <i className="ms-2 bi bi-envelope d-flex align-items-center">
+              <Link href={`mailto:${settingData.email}`} target='_blank'>{settingData.email}</Link>
+            </i>
+
+            <i className="ms-2 bi bi-telephone d-flex align-items-center">
+              <Link href={`tel:${settingData.phone}`} target='_blank'>{settingData.phone}</Link>
+            </i>
+
+            <i className="ms-2 bi bi-whatsapp d-flex align-items-center">
+              <Link href={`https://wa.me/${settingData.whatsapp}`} target='_blank'>{settingData.whatsapp}</Link>
+            </i>
+
+          </div>
+          <div className="social-links d-none d-md-flex align-items-center">
+            <Link to={settingData.facebook} target='_blank' className="facebook"><i className="ms-2 bi bi-facebook"></i></Link>
+            <Link to={settingData.twitter} target='_blank' className="twitter"><i className="ms-2 bi bi-twitter-x"></i></Link>
+            <Link to={settingData.instagram} target='_blank' className="instagram"><i className="ms-2 bi bi-instagram"></i></Link>
+            <Link to={settingData.linkedin} target='_blank' className="linkedin"><i className="ms-2 bi bi-linkedin"></i></Link>
+            <Link to={settingData.youtube} target='_blank' className="linkedin"><i className="ms-2 bi bi-youtube"></i></Link>
+          </div>
         </div>
       </div>
-    </div>
-    {/* <!-- End Top Bar --> */}
+      {/* <!-- End Top Bar --> */}
 
-    <div className="branding d-flex align-items-cente">
+      <div className="branding d-flex align-items-cente">
 
-      <div className="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" className="logo d-flex align-items-center">
-          {/* <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.webp" alt=""> --> */}
-          <h1 className="sitename">Clinic</h1>
-        </a>
+        <div className="container position-relative d-flex align-items-center justify-content-between">
+          <NavLink to="/" className="logo d-flex align-items-center">
+            <h1 className="sitename">{settingData.siteName}</h1>
+          </NavLink>
 
-        <nav id="navmenu" className="navmenu">
-          <ul>
-            <li><a href="index.html" className="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="departments.html">Departments</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="doctors.html">Doctors</a></li>
-            <li className="dropdown"><a href="#"><span>More Pages</span> <i className="bi bi-chevron-down toggle-dropdown"></i></a>
+          <nav id="navmenu" className="navmenu">
             <ul>
-              <li><a href="department-details.html">Department Details</a></li>
-              <li><a href="service-details.html">Service Details</a></li>
-              <li><a href="appointment.html">Appointment</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
-              <li><a href="faq.html">Frequently Asked Questions</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li><a href="terms.html">Terms</a></li>
-              <li><a href="privacy.html">Privacy</a></li>
-              <li><a href="404.html">404</a></li>
+              <li><NavLink to="/">Home</NavLink></li>
+              <li><NavLink to="about">About</NavLink></li>
+              <li><NavLink to="departments.html">Departments</NavLink></li>
+              <li><NavLink to="services.html">Services</NavLink></li>
+              <li><NavLink to="doctors.html">Doctors</NavLink></li>
+              <li className="dropdown"><Link to="#"><span>More Pages</span> <i className="ms-2 bi bi-chevron-down toggle-dropdown"></i></Link>
+                <ul>
+                  <li><NavLink to="department-details.html">Department Details</NavLink></li>
+                  <li><NavLink to="service-details.html">Service Details</NavLink></li>
+                  <li><NavLink to="appointment.html">Appointment</NavLink></li>
+                  <li><NavLink to="testimonials.html">Testimonials</NavLink></li>
+                  <li><NavLink to="faq.html">Frequently Asked Questions</NavLink></li>
+                  <li><NavLink to="gallery.html">Gallery</NavLink></li>
+                  <li><NavLink to="terms.html">Terms</NavLink></li>
+                  <li><NavLink to="privacy.html">Privacy</NavLink></li>
+                  <li><NavLink to="404.html">404</NavLink></li>
+                </ul>
+              </li>
+              <li className="dropdown"><Link to="#"><span>Dropdown</span> <i className="ms-2 bi bi-chevron-down toggle-dropdown"></i></Link>
+                <ul>
+                  <li><NavLink to="#">Dropdown 1</NavLink></li>
+                  <li className="dropdown"><NavLink to="#"><span>Deep Dropdown</span> <i className="ms-2 bi bi-chevron-down toggle-dropdown"></i></NavLink>
+                    <ul>
+                      <li><NavLink to="#">Deep Dropdown 1</NavLink></li>
+                      <li><NavLink to="#">Deep Dropdown 2</NavLink></li>
+                      <li><NavLink to="#">Deep Dropdown 3</NavLink></li>
+                      <li><NavLink to="#">Deep Dropdown 4</NavLink></li>
+                      <li><NavLink to="#">Deep Dropdown 5</NavLink></li>
+                    </ul>
+                  </li>
+                  <li><NavLink to="#">Dropdown 2</NavLink></li>
+                  <li><NavLink to="#">Dropdown 3</NavLink></li>
+                  <li><NavLink to="#">Dropdown 4</NavLink></li>
+                </ul>
+              </li>
+              <li><NavLink to="contact.html">Contact</NavLink></li>
             </ul>
-            </li>
-            <li className="dropdown"><a href="#"><span>Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Dropdown 1</a></li>
-                <li className="dropdown"><a href="#"><span>Deep Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></a>
-                  <ul>
-                    <li><a href="#">Deep Dropdown 1</a></li>
-                    <li><a href="#">Deep Dropdown 2</a></li>
-                    <li><a href="#">Deep Dropdown 3</a></li>
-                    <li><a href="#">Deep Dropdown 4</a></li>
-                    <li><a href="#">Deep Dropdown 5</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
-              </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-          <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
+            <i className="ms-2 mobile-nav-toggle d-xl-none bi bi-list"></i>
+          </nav>
+
+        </div>
 
       </div>
 
-    </div>
-
-  </header>
+    </header>
   )
 }
