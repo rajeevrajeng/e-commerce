@@ -1,90 +1,76 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { NavLink, Link } from 'react-router-dom'
 
 export default function Footer() {
+  let [settingData, SetSettingData] = useState({
+    siteName: import.meta.env.VITE_APP_SITE_NAME,
+    map1: import.meta.env.VITE_APP_MAP1,
+    address: import.meta.env.VITE_APP_ADDRESS,
+    email: import.meta.env.VITE_APP_EMAIL,
+    phone: import.meta.env.VITE_APP_PHONE,
+    whatsapp: import.meta.env.VITE_APP_WHATSAPP,
+    facebook: import.meta.env.VITE_APP_FACEBOOK,
+    twitter: import.meta.env.VITE_APP_TWITTER,
+    linkedin: import.meta.env.VITE_APP_LINKEDIN,
+    instagram: import.meta.env.VITE_APP_INSTAGRAM,
+    youtube: import.meta.env.VITE_APP_YOUTUBE
+  })
+
   return (
     <footer id="footer" className="footer-16 footer position-relative bg-dark">
       <div className="container">
         <div className="footer-main" data-aos="fade-up" data-aos-delay="100">
           <div className="row align-items-start">
-
-            <div className="col-lg-5">
+            <div className="col-lg-4">
               <div className="brand-section">
-                <a href="index.html" className="logo d-flex align-items-center mb-4">
-                  <span className="text-light sitename">Clinic</span>
-                </a>
-                <p className="brand-description text-light">Crafting exceptional digital experiences through thoughtful design and
-                  innovative solutions that elevate your brand presence.</p>
-
-                <div className="contact-info mt-5">
-                  <div className="contact-item">
-                    <i className="bi bi-geo-alt text-light"></i>
-                    <span className="text-light">123 Creative Boulevard, Design District, NY 10012</span>
-                  </div>
-                  <div className="contact-item">
-                    <i className="bi bi-telephone text-light"></i>
-                    <span className="text-light">+1 (555) 987-6543</span>
-                  </div>
-                  <div className="contact-item">
-                    <i className="bi bi-envelope text-light"></i>
-                    <span className="text-light">hello@designstudio.com</span>
-                  </div>
-                </div>
+                <Link to="index.html" className="logo d-flex align-items-center mb-4">
+                  <span className="text-light sitename">{settingData.siteName}</span>
+                </Link>
+                <p className="text-light">Learn more about our mission, values, and commitment to quality—delivering trusted products, excellent service, and a seamless shopping experience you can rely on every day.</p>
               </div>
             </div>
 
-            <div className="col-lg-7">
+            <div className="col-lg-8">
               <div className="footer-nav-wrapper">
                 <div className="row">
 
-                  <div className="col-6 col-lg-3">
+                  <div className="col-md-3 col-12">
                     <div className="nav-column">
-                      <h6 className='text-light'>Studio</h6>
+                      <h6 className='text-light'>Quick Link</h6>
                       <nav className="footer-nav">
-                        <a href="#!" className='text-light'>Our Story</a>
-                        <a href="#!" className='text-light'>Design Process</a>
-                        <a href="#!" className='text-light'>Portfolio</a>
-                        <a href="#!" className='text-light'>Case Studies</a>
-                        <a href="#!" className='text-light'>Awards</a>
+                        <Link to="/" className='text-light'>Home</Link>
+                        <Link to="/aboutus" className='text-light'>About Us</Link>
+                        <Link to="/shop" className='text-light'>Shop</Link>
+                        <Link to="/feature" className='text-light'>Features</Link>
+                        <Link to="/faq" className='text-light'>Faq</Link>
                       </nav>
                     </div>
                   </div>
 
-                  <div className="col-6 col-lg-3">
+                  <div className="col-md-3 col-12">
                     <div className="nav-column">
-                      <h6 className='text-light'>Services</h6>
+                      <h6 className='text-light'>Important Link</h6>
                       <nav className="footer-nav">
-                        <a href="#!" className='text-light'>Brand Identity</a>
-                        <a href="#!" className='text-light'>Web Design</a>
-                        <a href="#!" className='text-light'>Mobile Apps</a>
-                        <a href="#!" className='text-light'>Digital Strategy</a>
-                        <a href="#!" className='text-light'>Consultation</a>
+                        <Link to="/testimonial" className='text-light'>Testimonial</Link>
+                        <Link to="/contactus" className='text-light'>Contact Us</Link>
+                        <Link to="/privacypolicy" className='text-light'>Privacy Policy</Link>
+                        <Link to="/terms" className='text-light'>Terms &amp; Condition</Link>
                       </nav>
                     </div>
                   </div>
 
-                  <div className="col-6 col-lg-3">
+                  <div className="col-md-6 col-12">
                     <div className="nav-column">
-                      <h6 className='text-light'>Resources</h6>
-                      <nav className="footer-nav">
-                        <a href="#!" className='text-light'>Design Blog</a>
-                        <a href="#!" className='text-light'>Style Guide</a>
-                        <a href="#!" className='text-light'>Free Assets</a>
-                        <a href="#!" className='text-light'>Tutorials</a>
-                        <a href="#!" className='text-light'>Inspiration</a>
-                      </nav>
-                    </div>
-                  </div>
-
-                  <div className="col-6 col-lg-3">
-                    <div className="nav-column">
-                      <h6 className='text-light'>Connect</h6>
-                      <nav className="footer-nav">
-                        <a href="#!" className='text-light'>Start Project</a>
-                        <a href="#!" className='text-light'>Schedule Call</a>
-                        <a href="#!" className='text-light'>Join Newsletter</a>
-                        <a href="#!" className='text-light'>Follow Updates</a>
-                        <a href="#!" className='text-light'>Partnership</a>
-                      </nav>
+                      <h6 className='text-light'>Subscribe Our Newsletter Service</h6>
+                      <p className='text-light my-3'>Subscribe to our newsletter to stay updated on the latest products, exclusive offers, and special discounts. Get early access to new arrivals, shopping tips, and curated deals delivered straight to your inbox—helping you save more and shop smarter every time.</p>
+                      <div className="div">
+                        <form>
+                          <div className='btn-group w-100'>
+                            <input type="email" name="email" class="form-control rounded-0 rounded-start" placeholder="Enter Your Email Address"></input>
+                            <button className='btn btn-dark border'>Subscribe</button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
                   </div>
 
@@ -93,8 +79,44 @@ export default function Footer() {
             </div>
 
           </div>
-        </div>
 
+          <div className='row'>
+            <div className="contact-info d-flex justify-content-between gap-3">
+              <div className='d-flex gap-3'>
+                <div className="contact-item">
+                  <Link to={`${settingData.map1}`} target='_blank' className='d-flex gap-2'><i className="bi bi-geo-alt text-light"></i>
+                    <span className="text-light">{settingData.address}</span></Link>
+                </div>
+                <div className="contact-item">
+                  <Link to={`mailto:${settingData.email}`} target='_blank' className='d-flex gap-2'>
+                    <i className="bi bi-envelope text-light"></i>
+                    <span className="text-light">{settingData.email}</span>
+                  </Link>
+                </div>
+                <div className="contact-item">
+                  <Link to={`tel:${settingData.phone}`} target='_blank' className='d-flex gap-2'>
+                    <i className="bi bi-telephone text-light"></i>
+                    <span className="text-light">{settingData.phone}</span>
+                  </Link>
+                </div>
+                <div className="contact-item">
+                  <Link to={`https://wa.me/${settingData.whatsapp}`} target='_blank' className='d-flex gap-2'>
+                    <i className="bi bi-whatsapp text-light"></i>
+                    <span className="text-light">{settingData.whatsapp}</span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="social-links d-flex gap-3 align-items-center">
+                <Link to={settingData.facebook} target='_blank' className="text-light facebook"><i className="ms-2 bi bi-facebook"></i></Link>
+                <Link to={settingData.twitter} target='_blank' className="text-light twitter"><i className="ms-2 bi bi-twitter-x"></i></Link>
+                <Link to={settingData.instagram} target='_blank' className="text-light instagram"><i className="ms-2 bi bi-instagram"></i></Link>
+                <Link to={settingData.linkedin} target='_blank' className="text-light linkedin"><i className="ms-2 bi bi-linkedin"></i></Link>
+                <Link to={settingData.youtube} target='_blank' className="text-light linkedin"><i className="ms-2 bi bi-youtube"></i></Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="footer-bottom">
@@ -102,21 +124,16 @@ export default function Footer() {
           <div className="bottom-content" data-aos="fade-up" data-aos-delay="300">
             <div className="row align-items-center">
 
-              <div className="col-lg-6">
+              <div className="col-lg-4">
                 <div className="copyright">
-                  <p className='text-light'>© <span className="text-light sitename">Clinic</span>. All rights reserved.</p>
+                  <p className='text-light'>&copy; <span className="text-light sitename">{settingData.siteName}</span>. All rights reserved.</p>
                 </div>
               </div>
 
-              <div className="col-lg-6">
+              <div className="col-lg-8">
                 <div className="legal-links">
-                  <a href="#!" className='text-light'>Privacy Policy</a>
-                  <a href="#!" className='text-light'>Terms of Service</a>
-                  <a href="#!" className='text-light'>Cookie Policy</a>
-                  <div className="credits text-light">
-
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>. Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                  </div>
+                  <Link to="/privacypolicy" className='text-light'>Privacy Policy</Link>
+                  <Link to="/terms" className='text-light'>Terms of Service</Link>        
                 </div>
               </div>
 

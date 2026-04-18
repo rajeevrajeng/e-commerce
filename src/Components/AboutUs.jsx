@@ -14,7 +14,7 @@ export default function AboutUs() {
                                 <p className="lead-text">For over two decades, we've been dedicated to providing exceptional healthcare that
                                     combines cutting-edge medical technology with the personal touch our patients deserve.</p>
 
-                                <p>Our multidisciplinary team of specialists works collaboratively to ensure every patient receives
+                                <p className="lead-text">Our multidisciplinary team of specialists works collaboratively to ensure every patient receives
                                     comprehensive care tailored to their unique needs. From preventive services to complex procedures, we
                                     maintain the highest standards of medical excellence while fostering an environment of trust and
                                     healing.</p>

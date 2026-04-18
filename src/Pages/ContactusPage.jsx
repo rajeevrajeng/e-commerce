@@ -4,10 +4,9 @@ import Breadcrum from '../Components/Breadcrum'
 export default function ContactusPage() {
     return (
         <>
-        <Breadcrum title="Contact Us" description="Get in touch with us for any queries, support, or feedback. Our team is here to help you with orders, products, and a smooth shopping experience anytime."/>
+            <Breadcrum title="Contact Us" description="Get in touch with us for any queries, support, or feedback. Our team is here to help you with orders, products, and a smooth shopping experience anytime." />
 
-                    <section id="contact" className="contact section">
-
+            <section id="contact" className="contact section">
                 <div className="container" data-aos="fade-up" data-aos-delay="100">
                     <div className="row g-5">
                         <div className="col-lg-5">
@@ -55,17 +54,17 @@ export default function ContactusPage() {
                                 <form action="forms/contact.php" method="post" className="php-email-form">
                                     <div className="row g-4">
                                         <div className="col-md-6">
-                                            <input type="text" className="form-control" name="name" id="name" placeholder="Your Name" required=""/>
+                                            <input type="text" className="form-control" name="name" id="name" placeholder="Your Name" required="" />
                                         </div>
 
                                         <div className="col-md-6">
                                             <input type="email" className="form-control" name="email" id="email" placeholder="Your Email"
-                                                required=""/>
+                                                required="" />
                                         </div>
 
                                         <div className="col-12">
                                             <input type="text" className="form-control" name="subject" id="subject" placeholder="Subject"
-                                                required=""/>
+                                                required="" />
                                         </div>
 
                                         <div className="col-12">
@@ -89,13 +88,13 @@ export default function ContactusPage() {
                     </div>
                 </div>
 
-                <div className="container-fluid map-container" data-aos="fade-up" data-aos-delay="200">
+                {/* <div className="container-fluid map-container" data-aos="fade-up" data-aos-delay="200">
                     <div className="map-overlay"></div>
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus"
                         width="100%" height="500" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                </div> */}
 
             </section>
         </>

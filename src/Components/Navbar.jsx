@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 
 export default function Navbar() {
+  let [showMemu, setShowMenu] = useState(false)
   let [settingData, SetSettingData] = useState({
     siteName: import.meta.env.VITE_APP_SITE_NAME,
     map1: import.meta.env.VITE_APP_MAP1,
@@ -17,35 +18,35 @@ export default function Navbar() {
   })
 
   return (
-    <header id="header" className="header fixed-top">
+    <header id="header" className={`header fixed-top  ${showMemu ? 'mobile-nav-active' : ''}`}>
 
       <div className="topbar d-flex align-items-center dark-background">
         <div className="container d-flex justify-content-center justify-content-md-between">
-          <div className="contact-info d-flex align-items-center">
+          <div className="contact-info d-flex align-items-center gap-3">
 
-            <i className="ms-2 bi bi-geo-alt d-flex align-items-center">
-              <Link href={`${settingData.map1}`} target='_blank'>{settingData.address}</Link>
-            </i>
+            <Link to={`${settingData.map1}`} target='_blank' className='d-flex gap-2 text-light align-items-center'>
 
-            <i className="ms-2 bi bi-envelope d-flex align-items-center">
-              <Link href={`mailto:${settingData.email}`} target='_blank'>{settingData.email}</Link>
-            </i>
+              <i className="ms-2 bi bi-geo-alt"></i> <span className='d-none d-xl-block'>{settingData.address}</span></Link>
 
-            <i className="ms-2 bi bi-telephone d-flex align-items-center">
-              <Link href={`tel:${settingData.phone}`} target='_blank'>{settingData.phone}</Link>
-            </i>
+            <Link to={`mailto:${settingData.email}`} target='_blank' className='d-flex gap-2 text-light align-items-center'>
+              <i className="ms-2 bi bi-envelope"></i>
+              <span className='d-none d-xl-block'>{settingData.email}</span></Link>
 
-            <i className="ms-2 bi bi-whatsapp d-flex align-items-center">
-              <Link href={`https://wa.me/${settingData.whatsapp}`} target='_blank'>{settingData.whatsapp}</Link>
-            </i>
+            <Link to={`tel:${settingData.phone}`} target='_blank' className='d-flex gap-2 text-light align-items-center'>
+              <i className="ms-2 bi bi-telephone"></i>
+              <span className='d-none d-xl-block'>{settingData.phone}</span></Link>
+
+            <Link to={`https://wa.me/${settingData.whatsapp}`} target='_blank' className='d-flex gap-2 text-light align-items-center'>
+              <i className="ms-2 bi bi-whatsapp"></i>
+              <span className='d-none d-xl-block'>{settingData.whatsapp}</span></Link>
 
           </div>
-          <div className="social-links d-none d-md-flex align-items-center">
-            <Link to={settingData.facebook} target='_blank' className="facebook"><i className="ms-2 bi bi-facebook"></i></Link>
-            <Link to={settingData.twitter} target='_blank' className="twitter"><i className="ms-2 bi bi-twitter-x"></i></Link>
-            <Link to={settingData.instagram} target='_blank' className="instagram"><i className="ms-2 bi bi-instagram"></i></Link>
-            <Link to={settingData.linkedin} target='_blank' className="linkedin"><i className="ms-2 bi bi-linkedin"></i></Link>
-            <Link to={settingData.youtube} target='_blank' className="linkedin"><i className="ms-2 bi bi-youtube"></i></Link>
+          <div className="social-links d-flex align-items-center">
+            <Link to={settingData.facebook} target='_blank' className="text-light facebook"><i className="ms-2 bi bi-facebook"></i></Link>
+            <Link to={settingData.twitter} target='_blank' className="text-light twitter"><i className="ms-2 bi bi-twitter-x"></i></Link>
+            <Link to={settingData.instagram} target='_blank' className="text-light instagram"><i className="ms-2 bi bi-instagram"></i></Link>
+            <Link to={settingData.linkedin} target='_blank' className="text-light linkedin"><i className="ms-2 bi bi-linkedin"></i></Link>
+            <Link to={settingData.youtube} target='_blank' className="text-light linkedin"><i className="ms-2 bi bi-youtube"></i></Link>
           </div>
         </div>
       </div>
@@ -61,43 +62,28 @@ export default function Navbar() {
           <nav id="navmenu" className="navmenu">
             <ul>
               <li><NavLink to="/">Home</NavLink></li>
-              <li><NavLink to="about">About</NavLink></li>
-              <li><NavLink to="departments.html">Departments</NavLink></li>
-              <li><NavLink to="services.html">Services</NavLink></li>
-              <li><NavLink to="doctors.html">Doctors</NavLink></li>
-              <li className="dropdown"><Link to="#"><span>More Pages</span> <i className="ms-2 bi bi-chevron-down toggle-dropdown"></i></Link>
+              <li><NavLink to="/aboutus">About Us</NavLink></li>
+              <li><NavLink to="/shop">Shop</NavLink></li>
+              <li><NavLink to="/feature">Feature</NavLink></li>
+              <li><NavLink to="/faq">Fqa</NavLink></li>
+              <li><NavLink to="/contactus">Contact Us</NavLink></li>
+              <li><NavLink to="/testimonial">Testimonial</NavLink></li>
+
+              <li className="dropdown"><Link to="#"><span>User Name</span> <i className="ms-2 bi bi-chevron-down toggle-dropdown"></i></Link>
                 <ul>
-                  <li><NavLink to="department-details.html">Department Details</NavLink></li>
-                  <li><NavLink to="service-details.html">Service Details</NavLink></li>
-                  <li><NavLink to="appointment.html">Appointment</NavLink></li>
-                  <li><NavLink to="testimonials.html">Testimonials</NavLink></li>
-                  <li><NavLink to="faq.html">Frequently Asked Questions</NavLink></li>
-                  <li><NavLink to="gallery.html">Gallery</NavLink></li>
-                  <li><NavLink to="terms.html">Terms</NavLink></li>
-                  <li><NavLink to="privacy.html">Privacy</NavLink></li>
-                  <li><NavLink to="404.html">404</NavLink></li>
+                  <li><Link to="/profile?option=Profile">Profile</Link></li>
+                  <li><Link to="/profile?option=Wishlist">Wishlist</Link></li>
+                  <li><Link to="/profile?option=Orders">Orders</Link></li>
+                  <li><Link to="/profile?option=Address">Address</Link></li>
+                  <li><Link to="/cart">Cart</Link></li>
+                  <li><Link to="/checkout">Checkout</Link></li>
+                  <li><button className='btn ms-2'>Logout</button></li>
+
                 </ul>
               </li>
-              <li className="dropdown"><Link to="#"><span>Dropdown</span> <i className="ms-2 bi bi-chevron-down toggle-dropdown"></i></Link>
-                <ul>
-                  <li><NavLink to="#">Dropdown 1</NavLink></li>
-                  <li className="dropdown"><NavLink to="#"><span>Deep Dropdown</span> <i className="ms-2 bi bi-chevron-down toggle-dropdown"></i></NavLink>
-                    <ul>
-                      <li><NavLink to="#">Deep Dropdown 1</NavLink></li>
-                      <li><NavLink to="#">Deep Dropdown 2</NavLink></li>
-                      <li><NavLink to="#">Deep Dropdown 3</NavLink></li>
-                      <li><NavLink to="#">Deep Dropdown 4</NavLink></li>
-                      <li><NavLink to="#">Deep Dropdown 5</NavLink></li>
-                    </ul>
-                  </li>
-                  <li><NavLink to="#">Dropdown 2</NavLink></li>
-                  <li><NavLink to="#">Dropdown 3</NavLink></li>
-                  <li><NavLink to="#">Dropdown 4</NavLink></li>
-                </ul>
-              </li>
-              <li><NavLink to="contact.html">Contact</NavLink></li>
+
             </ul>
-            <i className="ms-2 mobile-nav-toggle d-xl-none bi bi-list"></i>
+            <i className={`ms-2 mobile-nav-toggle d-xl-none bi ${showMemu ? 'bi-x' : 'bi-list'}`} onClick={() => setShowMenu(!showMemu)}></i>
           </nav>
 
         </div>

@@ -11,6 +11,7 @@ import ContactusPage from './Pages/ContactusPage'
 import ErrorPage from './Pages/ErrorPage'
 import PrivacyPolicy from './Pages/PrivacyPolicy'
 import TermsAndCondition from './Pages/TermsAndCondition'
+import TestimonialPage from './Pages/TestimonialPage'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path='/feature' element={<FeaturePage />} />
           <Route path='/faq' element={<FaqPage />} />
           <Route path='/contactus' element={<ContactusPage/>}/>
+          <Route path='/testimonial' element={<TestimonialPage/>}/>
           <Route path='/privacypolicy' element={<PrivacyPolicy/>}/>
           <Route path='/terms' element={<TermsAndCondition/>}/>
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import AboutUs from '../Components/AboutUs'
 import Feature from '../Components/Feature'
 import CustomerSupport from '../Components/CustomerSupport'
@@ -12,75 +13,47 @@ export default function HomePage() {
 
         <div className="container" data-aos="fade-up" data-aos-delay="100">
 
-          <div className="row align-items-center">
-            <div className="col-lg-6">
+          <div className="row align-items-center d-flex justify-content-between">
+            <div className="col-lg-5">
               <div className="hero-content">
-                <div className="trust-badges mb-4" data-aos="fade-right" data-aos-delay="200">
-                  <div className="badge-item">
-                    <i className="bi bi-shield-check"></i>
-                    <span>Accredited</span>
-                  </div>
-                  <div className="badge-item">
-                    <i className="bi bi-clock"></i>
-                    <span>24/7 Emergency</span>
-                  </div>
-                  <div className="badge-item">
-                    <i className="bi bi-star-fill"></i>
-                    <span>4.9/5 Rating</span>
-                  </div>
-                </div>
-
                 <h1 data-aos="fade-right" data-aos-delay="300">
-                  Excellence in <span className="highlight">Healthcare</span> With Compassionate Care
-                </h1>
+                  Discover <span className="highlight">Top-Quality</span> Products at Great Prices With Fast, Secure Delivery.</h1>
 
                 <p className="hero-description" data-aos="fade-right" data-aos-delay="400">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                  Experience seamless shopping with a wide selection of quality products at great prices. Enjoy secure checkout, fast delivery, and reliable customer support. Discover new arrivals, trending items, and exclusive deals—all designed to make your shopping simple, convenient, and enjoyable every day.
                 </p>
 
                 <div className="hero-stats mb-4" data-aos="fade-right" data-aos-delay="500">
                   <div className="stat-item">
                     <h3><span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="2"
-                      className="purecounter"></span>+</h3>
-                    <p>Years Experience</p>
+                      className="purecounter"><i className='bi bi-check'></i></span></h3>
+                    <p>100% Genuine Products</p>
                   </div>
                   <div className="stat-item">
                     <h3><span data-purecounter-start="0" data-purecounter-end="5000" data-purecounter-duration="2"
-                      className="purecounter"></span>+</h3>
-                    <p>Patients Treated</p>
+                      className="purecounter"><i className='bi bi-headphones'></i></span></h3>
+                    <p>24/7 Customer Support</p>
                   </div>
                   <div className="stat-item">
                     <h3><span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="2"
-                      className="purecounter"></span>+</h3>
-                    <p>Medical Experts</p>
+                      className="purecounter"><i className='bi bi-truck'></i></span></h3>
+                    <p>Fast Delivery</p>
                   </div>
                 </div>
 
                 <div className="hero-actions" data-aos="fade-right" data-aos-delay="600">
-                  <a href="appointment.html" className="btn btn-primary">Book Appointment</a>
-                  <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" className="btn btn-outline glightbox">
-                    <i className="bi bi-play-circle me-2"></i>
-                    Watch Our Story
-                  </a>
+                  <Link to="/shop" className="btn btn-primary btn-sm">Shop Now</Link>
+                  <Link to="/feature" className="btn btn-primary btn-sm">Features</Link>
+                  <Link to="/contactus" className="btn btn-primary btn-sm">Contact Us</Link>
                 </div>
-
-                <div className="emergency-contact" data-aos="fade-right" data-aos-delay="700">
-                  <div className="emergency-icon">
-                    <i className="bi bi-telephone-fill"></i>
-                  </div>
-                  <div className="emergency-info">
-                    <small>Emergency Hotline</small>
-                    <strong>+1 (555) 911-2468</strong>
-                  </div>
-                </div>
+               
               </div>
             </div>
 
-            <div className="col-lg-6">
+            <div className="col-lg-7">
               <div className="hero-visual" data-aos="fade-left" data-aos-delay="400">
                 <div className="main-image">
-                  <img src="assets/img/health/staff-10.webp" alt="Modern Healthcare Facility" className="img-fluid" />
+                  <img src="assets/img/shop/hero-03.jpg" alt="Modern Healthcare Facility" className="img-fluid" />
                   <div className="floating-card appointment-card">
                     <div className="card-icon">
                       <i className="bi bi-calendar-check"></i>
@@ -88,7 +61,7 @@ export default function HomePage() {
                     <div className="card-content">
                       <h6>Next Available</h6>
                       <p>Today 2:30 PM</p>
-                      <small>Dr. Sarah Johnson</small>
+                      <small>Sarah Johnson</small>
                     </div>
                   </div>
                   <div className="floating-card rating-card">
@@ -120,8 +93,8 @@ export default function HomePage() {
       <AboutUs />
       <Feature />
       <CustomerSupport />
-      <Products/>
-      <Testimonials/>
+      <Products />
+      <Testimonials />
     </>
   )
 }

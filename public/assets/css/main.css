@@ -503,12 +503,12 @@ h6 {
   background: var(--background-color);
   color: var(--default-color);
   font-size: 15px;
-  padding: 100px 0 0;
+  padding: 60px 0 0;
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
 }
 
 .footer-16 .footer-main {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
 .footer-16 .brand-section .logo {
@@ -674,7 +674,7 @@ h6 {
 }
 
 .footer-16 .footer-bottom {
-  padding: 30px 0;
+  padding: 20px 0;
 }
 
 .footer-16 .footer-bottom .copyright p {
@@ -1062,11 +1062,12 @@ section,
 }
 
 .hero .hero-content h1 {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  line-height: 1.2;
-  margin: 1.5rem 0;
+  line-height: 1.5;
+  margin: 2.5rem 0;
   color: var(--heading-color);
+  text-align: left;
 }
 
 .hero .hero-content h1 .highlight {
@@ -1103,6 +1104,7 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   margin-bottom: 2rem;
   max-width: 500px;
+  text-align: justify;
 }
 
 .hero .hero-content .hero-stats {
@@ -1450,6 +1452,7 @@ section,
   line-height: 1.7;
   color: color-mix(in srgb, var(--default-color), transparent 15%);
   margin-bottom: 1.5rem;
+  text-align: justify;
 }
 
 .home-about .about-content p {
@@ -1890,7 +1893,6 @@ section,
   background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #667eea 30%));
   border-radius: 20px;
   padding: 40px;
-  margin-top: 60px;
   color: var(--contrast-color);
 }
 
@@ -6027,7 +6029,7 @@ section,
 # Error 404 Section
 --------------------------------------------------------------*/
 .error-404 {
-  padding: 120px 0;
+  padding: 80px 0;
   min-height: 100vh;
   display: flex;
   align-items: center;
