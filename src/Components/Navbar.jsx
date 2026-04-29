@@ -66,8 +66,9 @@ export default function Navbar() {
               <li><NavLink to="/shop">Shop</NavLink></li>
               <li><NavLink to="/feature">Feature</NavLink></li>
               <li><NavLink to="/faq">Fqa</NavLink></li>
-              <li><NavLink to="/contactus">Contact Us</NavLink></li>
               <li><NavLink to="/testimonial">Testimonial</NavLink></li>
+              <li><NavLink to="/contactus">Contact Us</NavLink></li>
+              <li><NavLink to="/admin">Admin</NavLink></li>
 
               <li className="dropdown"><Link to="#"><span>User Name</span> <i className="ms-2 bi bi-chevron-down toggle-dropdown"></i></Link>
                 <ul>

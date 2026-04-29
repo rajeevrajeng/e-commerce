@@ -12,6 +12,11 @@ import ErrorPage from './Pages/ErrorPage'
 import PrivacyPolicy from './Pages/PrivacyPolicy'
 import TermsAndCondition from './Pages/TermsAndCondition'
 import TestimonialPage from './Pages/TestimonialPage'
+import AdminHomePage from './Pages/Admin/AdminHomePage'
+import AdminMainCategoryPage from './Pages/Admin/Maincategory/AdminMainCategoryPage'
+import AdminCreateMainCategoryPage from './Pages/Admin/Maincategory/AdminCreateMainCategoryPage'
+import AdminUpdateMainCategoryPage from './Pages/Admin/Maincategory/AdminUpdateMainCategoryPage'
+
 
 export default function App() {
   return (
@@ -24,13 +29,20 @@ export default function App() {
           <Route path='/shop' element={<ShopPage />} />
           <Route path='/feature' element={<FeaturePage />} />
           <Route path='/faq' element={<FaqPage />} />
-          <Route path='/contactus' element={<ContactusPage/>}/>
-          <Route path='/testimonial' element={<TestimonialPage/>}/>
-          <Route path='/privacypolicy' element={<PrivacyPolicy/>}/>
-          <Route path='/terms' element={<TermsAndCondition/>}/>
+          <Route path='/contactus' element={<ContactusPage />} />
+          <Route path='/testimonial' element={<TestimonialPage />} />
+          <Route path='/privacypolicy' element={<PrivacyPolicy />} />
+          <Route path='/terms' element={<TermsAndCondition />} />
+
+          {/* Admin Routes */}
+
+          <Route path='/admin' element={<AdminHomePage />} />
+          <Route path='/admin/maincategory' element={<AdminMainCategoryPage />} />
+          <Route path='/admin/maincategory/create' element={<AdminCreateMainCategoryPage />} />
+          <Route path='/admin/maincategory/update/:id' element={<AdminUpdateMainCategoryPage/>}/>
 
 
-          <Route path='/*' element={<ErrorPage/>}/>
+          <Route path='/*' element={<ErrorPage />} />
 
         </Routes>
         <Footer />

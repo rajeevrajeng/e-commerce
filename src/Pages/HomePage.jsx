@@ -59,9 +59,9 @@ export default function HomePage() {
                       <i className="bi bi-calendar-check"></i>
                     </div>
                     <div className="card-content">
-                      <h6>Next Available</h6>
-                      <p>Today 2:30 PM</p>
-                      <small>Sarah Johnson</small>
+                      <h6>Sale in Live</h6>
+                      <p>Grab Upto 90% Discount</p>
+                      <small>On Latest Product</small>
                     </div>
                   </div>
                   <div className="floating-card rating-card">

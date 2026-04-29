@@ -66,7 +66,7 @@ export default function Footer() {
                       <div className="div">
                         <form>
                           <div className='btn-group w-100'>
-                            <input type="email" name="email" class="form-control rounded-0 rounded-start" placeholder="Enter Your Email Address"></input>
+                            <input type="email" name="email" className="form-control rounded-0 rounded-start" placeholder="Enter Your Email Address"/>
                             <button className='btn btn-dark border'>Subscribe</button>
                           </div>
                         </form>
