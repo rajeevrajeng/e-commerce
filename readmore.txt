@@ -1,0 +1,9 @@
+
+server run
+
+json-server data.json --watch --port 8000
+
+
+Install libraries
+
+npm i react-redux @reduxjs/toolkit

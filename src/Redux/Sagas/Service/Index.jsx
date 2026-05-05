@@ -89,9 +89,9 @@ export async function updateRecord(collection, payload) {
 }
 
 
-// createMultipart Record Function to call PUT API When Record Has Form Data i.e file field
+// updateMultipart Record Function to call PUT API When Record Has Form Data i.e file field
 
-export async function createMultipartRecord(collection, payload) {
+export async function updateMultipartRecord(collection, payload) {
 
     try {
 
@@ -113,7 +113,7 @@ export async function createMultipartRecord(collection, payload) {
 
 // Delete Record Function to call DELETE API When Record Has Only TEXT Data
 
-export async function upadteRecord(collection, payload) {
+export async function deleteRecord(collection, payload) {
 
     try {
 

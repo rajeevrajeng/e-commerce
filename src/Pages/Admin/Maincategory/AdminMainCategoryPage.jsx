@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import AdminSidebar from '../../../Components/AdminComponent/AdminSidebar'
-import DataTable from 'datatables.net-dt'
 
+import DataTable from 'datatables.net-dt'
 import 'datatables.net-dt/css/dataTables.dataTables.min.css'
+
+import AdminSidebar from '../../../Components/AdminComponent/AdminSidebar'
+
+import { getMaincategory, deleteMaincategory } from "../../../Redux/ActionCreators/MainCategoryActionCreators"
 
 export default function AdminMainCategoryPage() {
 
-    let [MaincategoryStateData, setMaincategoryStateData] = useState([])
+    //let [MaincategoryStateData, setMaincategoryStateData] = useState([])
+
+    let [data, setData] = useState([])
+
+    let MaincategoryStateData = useSelector(state => state.MaincategoryStateData)
+    let dispatch = useDispatch()
 
     async function deleteRecord(id) {
         if (window.confirm("Are You Sure to Delete That Record:")) {
@@ -28,25 +37,30 @@ export default function AdminMainCategoryPage() {
     useEffect(() => {
 
         let time = (async () => {
-            let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory`, {
+            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory`, {
 
-                method: "GET",
-                headers: {
-                    "context-type": "application/json"
-                }
+            //     method: "GET",
+            //     headers: {
+            //         "context-type": "application/json"
+            //     }
 
-            })
-            response = await response.json()
-            setMaincategoryStateData(response)
+            // })
+            // response = await response.json()
+            // setMaincategoryStateData(response)
 
+            dispatch(getMaincategory())
+
+            if (MaincategoryStateData.length) {
+                setData(MaincategoryStateData)
+            }
             let time = setTimeout(() => {
-               new DataTable('#myTable')
+                new DataTable('#myTable')
             }, 500)
             return time
         })()
 
         return () => clearTimeout(time)
-    }, [])
+    }, [MaincategoryStateData.length])
 
 
     return (
@@ -75,7 +89,7 @@ export default function AdminMainCategoryPage() {
                                 </thead>
 
                                 <tbody>
-                                    {MaincategoryStateData.map((item) => {
+                                    {data.map((item) => {
                                         return <tr key={item.id}>
                                             <td>{item.id}</td>
                                             <td>{item.name}</td>
