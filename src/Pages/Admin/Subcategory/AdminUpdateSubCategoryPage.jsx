@@ -6,9 +6,9 @@ import AdminSidebar from '../../../Components/AdminComponent/AdminSidebar'
 import TextValidators from '../../../FormValidators/TextValidators'
 import ImageValidators from '../../../FormValidators/ImageValidators'
 
-import { getMaincategory, updateMaincategory } from "../../../Redux/ActionCreators/MainCategoryActionCreators"
+import { getSubcategory, updateSubcategory } from "../../../Redux/ActionCreators/SubCategoryActionCreators"
 
-export default function AdminUpdateMainCategoryPage() {
+export default function AdminUpdateSubCategoryPage() {
     let { id } = useParams()
     let [data, setData] = useState({
         name: '',
@@ -26,9 +26,9 @@ export default function AdminUpdateMainCategoryPage() {
 
     let [show, setShow] = useState(false)
 
-    //let [MaincategoryStateData, setMaincategoryStateData] = useState([])
+    //let [SubcategoryStateData, setSubcategoryStateData] = useState([])
 
-    let MaincategoryStateData = useSelector(state => state.MaincategoryStateData)
+    let SubcategoryStateData = useSelector(state => state.SubcategoryStateData)
     let dispatch = useDispatch()
 
     let navigate = useNavigate()
@@ -37,7 +37,7 @@ export default function AdminUpdateMainCategoryPage() {
 
         let name = e.target.name
         // for image upload
-        let value = name === "pic" ? "maincategory/" + e.target.files[0].name : e.target.value
+        let value = name === "pic" ? "subcategory/" + e.target.files[0].name : e.target.value
 
         // if Real backend the below code use
         //let value = name === "pic" ? e.target.files[0].name : e.target.value
@@ -57,16 +57,16 @@ export default function AdminUpdateMainCategoryPage() {
             setShow(true)
         else {
 
-            let item = MaincategoryStateData.find(x => x.id !== id && x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
+            let item = SubcategoryStateData.find(x => x.id !== id && x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
 
             if (item) {
                 setShow(true)
-                setErrorMessage({ ...errorMessage, 'name': "Maincategory with This name is already exist" })
+                setErrorMessage({ ...errorMessage, 'name': "Subcategory with This name is already exist" })
                 return
             }
 
 
-            /* let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory/${id}`, {
+            /* let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory/${id}`, {
                 method: "PUT",
 
                 headers: {
@@ -79,12 +79,12 @@ export default function AdminUpdateMainCategoryPage() {
 
             response = await response.json()
             if (response)
-                navigate("/admin/maincategory")
+                navigate("/admin/subcategory")
             else {
                 alert("Something Went Wrong")
             } */
 
-            dispatch(updateMaincategory({ ...data })) // in not real backend
+            dispatch(updateSubcategory({ ...data })) // in not real backend
 
             /* 
             if real backend then below code
@@ -94,9 +94,9 @@ export default function AdminUpdateMainCategoryPage() {
             formData.append("name", data.name)
             formData.append("pic", data.pic)
             formData.append("status", data.status)
-            dispatch(updateMaincategory(formData)) */
+            dispatch(updateSubcategory(formData)) */
 
-            navigate("/admin/maincategory")
+            navigate("/admin/subcategory")
         }
 
     }
@@ -104,22 +104,22 @@ export default function AdminUpdateMainCategoryPage() {
     useEffect(() => {
 
         (() => {
-            dispatch(getMaincategory())
-            if (MaincategoryStateData.length) {
-                let item = MaincategoryStateData.find(x => x.id == id)
+            dispatch(getSubcategory())
+            if (SubcategoryStateData.length) {
+                let item = SubcategoryStateData.find(x => x.id == id)
                 if (item)
                     setData({ ...data, ...item })
                 else
-                    navigate("/admin/maincategory")
+                    navigate("/admin/subcategory")
             }
         })()
 
-    }, [MaincategoryStateData.length])
+    }, [SubcategoryStateData.length])
 
     /* useEffect(() => {
 
         (async () => {
-            let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory`, {
+            let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory`, {
 
                 method: "GET",
                 headers: {
@@ -134,11 +134,11 @@ export default function AdminUpdateMainCategoryPage() {
             let item = response.find(x => x.id === id)
             if (item) {
                 setData({ ...data, ...item })
-                setMaincategoryStateData(response)
+                setSubcategoryStateData(response)
             }
             else
-                navigation("/admin/maincategory")
-            setMaincategoryStateData(response)
+                navigation("/admin/subcategory")
+            setSubcategoryStateData(response)
         })()
 
     }, []) */
@@ -151,8 +151,8 @@ export default function AdminUpdateMainCategoryPage() {
                         <AdminSidebar />
                     </div>
                     <div className="col-md-9">
-                        <h5 className='bg-primary text-light text-center p-2'>Update Main Category
-                            <Link to="/admin/maincategory"><i className='bi bi-arrow-left text-light float-end'></i></Link>
+                        <h5 className='bg-primary text-light text-center p-2'>Update Subcategory
+                            <Link to="/admin/subcategory"><i className='bi bi-arrow-left text-light float-end'></i></Link>
                         </h5>
                         <form onSubmit={postData}>
                             <div className="row">

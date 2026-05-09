@@ -1,12 +1,22 @@
 import { all } from "redux-saga/effects";
 
-import MainCategorySagas from "./MainCategorySagas"
+import MaincategorySagas from "./MainCategorySagas"
+import SubcategorySagas from "./SubCategorySagas";
+import BrandSagas from "./BrandSagas";
+import ProductSagas from "./ProductSagas";
+import FeatureSagas from "./FeatureSagas";
+import FaqSagas from "./FaqSagas";
+import SettingSagas from "./SettingSagas";
 
-export default function* RootSaga()
-{
+export default function* RootSaga() {
     yield all([
 
-        MainCategorySagas(),
-        //SubCategorySagas()
+        MaincategorySagas(),
+        SubcategorySagas(),
+        BrandSagas(),
+        ProductSagas(),
+        FeatureSagas(),
+        FaqSagas(),
+        SettingSagas()
     ])
 }

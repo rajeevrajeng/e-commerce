@@ -6,10 +6,10 @@ import AdminSidebar from '../../../Components/AdminComponent/AdminSidebar'
 import TextValidators from '../../../FormValidators/TextValidators'
 import ImageValidators from '../../../FormValidators/ImageValidators'
 
-import { getMaincategory, createMaincategory } from "../../../Redux/ActionCreators/MainCategoryActionCreators"
+import { getSubcategory, createSubcategory } from "../../../Redux/ActionCreators/SubCategoryActionCreators"
 
 
-export default function AdminCreateMainCategoryPage() {
+export default function AdminCreateSubCategoryPage() {
     let [data, setData] = useState({
         name: '',
         pic: '',
@@ -26,9 +26,9 @@ export default function AdminCreateMainCategoryPage() {
 
     let [show, setShow] = useState(false)
 
-    // let [MaincategoryStateData, setMaincategoryStateData] = useState([])
+    // let [SubcategoryStateData, setSubcategoryStateData] = useState([])
 
-    let MaincategoryStateData = useSelector(state => state.MaincategoryStateData)
+    let SubcategoryStateData = useSelector(state => state.SubcategoryStateData)
     let dispatch = useDispatch()
 
     let navigate = useNavigate()
@@ -37,7 +37,7 @@ export default function AdminCreateMainCategoryPage() {
 
         let name = e.target.name
         // for image upload
-        let value = name === "pic" ? "maincategory/" + e.target.files[0].name : e.target.value
+        let value = name === "pic" ? "subcategory/" + e.target.files[0].name : e.target.value
 
         // if Real backend the below code use
         //let value = name === "pic" ? e.target.files[0].name : e.target.value
@@ -57,15 +57,15 @@ export default function AdminCreateMainCategoryPage() {
             setShow(true)
         else {
 
-            let item = MaincategoryStateData.find(x => x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
+            let item = SubcategoryStateData.find(x => x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
 
             if (item) {
                 setShow(true)
-                setErrorMessage({ ...errorMessage, 'name': "Maincategory with This name is already exist" })
+                setErrorMessage({ ...errorMessage, 'name': "Subcategory with This name is already exist" })
                 return
             }
 
-            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory`, {
+            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory`, {
             //     method: "POST",
 
             //     headers: {
@@ -79,12 +79,12 @@ export default function AdminCreateMainCategoryPage() {
             // response = await response.json()
             
             // if (response)
-            //     navigate("/admin/maincategory")
+            //     navigate("/admin/subcategory")
             // else {
                 //     alert("Something Went Wrong")
                 // }
         
-                dispatch(createMaincategory({...data})) // in not real backend
+                dispatch(createSubcategory({...data})) // in not real backend
                 
                 /* 
                 if real backend then below code
@@ -93,9 +93,9 @@ export default function AdminCreateMainCategoryPage() {
                 formData.append("name", data.name)
                 formData.append("pic", data.pic)
                 formData.append("status", data.status)
-                dispatch(createMaincategory(formData)) */
+                dispatch(createSubcategory(formData)) */
 
-                navigate("/admin/maincategory")
+                navigate("/admin/subcategory")
         }
 
     }
@@ -103,7 +103,7 @@ export default function AdminCreateMainCategoryPage() {
     useEffect(() => {
 
         ( () => {
-            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory`, {
+            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory`, {
 
             //     method: "GET",
             //     headers: {
@@ -113,12 +113,12 @@ export default function AdminCreateMainCategoryPage() {
 
             // })
             // response = await response.json()
-            // setMaincategoryStateData(response)
+            // setSubcategoryStateData(response)
 
-            dispatch(getMaincategory())
+            dispatch(getSubcategory())
         })()
 
-    }, [MaincategoryStateData.length])
+    }, [SubcategoryStateData.length])
 
     return (
         <>
@@ -128,8 +128,8 @@ export default function AdminCreateMainCategoryPage() {
                         <AdminSidebar />
                     </div>
                     <div className="col-md-9">
-                        <h5 className='bg-primary text-light text-center p-2'>Create Main Category
-                            <Link to="/admin/maincategory"><i className='bi bi-arrow-left text-light float-end'></i></Link>
+                        <h5 className='bg-primary text-light text-center p-2'>Create Subcategory
+                            <Link to="/admin/subcategory"><i className='bi bi-arrow-left text-light float-end'></i></Link>
                         </h5>
                         <form onSubmit={postData}>
                             <div className="row">

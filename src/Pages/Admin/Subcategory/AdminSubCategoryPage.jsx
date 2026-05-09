@@ -7,20 +7,20 @@ import 'datatables.net-dt/css/dataTables.dataTables.min.css'
 
 import AdminSidebar from '../../../Components/AdminComponent/AdminSidebar'
 
-import { getMaincategory, deleteMaincategory } from "../../../Redux/ActionCreators/MainCategoryActionCreators"
+import { getSubcategory, deleteSubcategory } from "../../../Redux/ActionCreators/SubCategoryActionCreators"
 
-export default function AdminMainCategoryPage() {
+export default function AdminSubCategoryPage() {
 
-    //let [MaincategoryStateData, setMaincategoryStateData] = useState([])
+    //let [SubcategoryStateData, setSubcategoryStateData] = useState([])
 
     let [data, setData] = useState([])
 
-    let MaincategoryStateData = useSelector(state => state.MaincategoryStateData)
+    let SubcategoryStateData = useSelector(state => state.SubcategoryStateData)
     let dispatch = useDispatch()
 
     function deleteRecord(id) {
         if (window.confirm("Are You Sure to Delete That Record:")) {
-            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory/${id}`, {
+            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory/${id}`, {
 
             //     method: "DELETE",
             //     headers: {
@@ -29,12 +29,12 @@ export default function AdminMainCategoryPage() {
 
             // })
             // response = await response.json()
-            // setMaincategoryStateData(MaincategoryStateData.filter(x => x.id !== id))
+            // setSubcategoryStateData(SubcategoryStateData.filter(x => x.id !== id))
 
-            dispatch(deleteMaincategory({ id: id }))
+            dispatch(deleteSubcategory({ id: id }))
             setData(data.filter(x => x.id !== id))
 
-        }
+        } 
 
     }
 
@@ -50,12 +50,12 @@ export default function AdminMainCategoryPage() {
 
             // })
             // response = await response.json()
-            // setMaincategoryStateData(response)
+            // setSubcategoryStateData(response)
 
-            dispatch(getMaincategory())
+            dispatch(getSubcategory())
 
-            if (MaincategoryStateData.length) {
-                setData(MaincategoryStateData)
+            if (SubcategoryStateData.length) {
+                setData(SubcategoryStateData)
             }
             let time = setTimeout(() => {
                 new DataTable('#myTable')
@@ -64,7 +64,7 @@ export default function AdminMainCategoryPage() {
         })()
 
         return () => clearTimeout(time)
-    }, [MaincategoryStateData.length])
+    }, [SubcategoryStateData.length])
 
 
     return (
@@ -75,8 +75,8 @@ export default function AdminMainCategoryPage() {
                         <AdminSidebar />
                     </div>
                     <div className="col-md-9">
-                        <h5 className='bg-primary text-light text-center p-2'>Main Category
-                            <Link to="/admin/maincategory/create"><i className='bi bi-plus text-light float-end fs-3'></i></Link>
+                        <h5 className='bg-primary text-light text-center p-2'>Sub Category
+                            <Link to="/admin/subcategory/create"><i className='bi bi-plus text-light float-end fs-3'></i></Link>
                         </h5>
 
                         <div className="table-responsive">
@@ -101,7 +101,7 @@ export default function AdminMainCategoryPage() {
                                                 <img src={`${import.meta.env.VITE_APP_IMAGE_SERVER}${item.pic}`} height={60} width={80} alt='' />
                                             </Link></td>
                                             <td>{item.status ? "Active" : "Inactive"}</td>
-                                            <td><Link to={`/admin/maincategory/update/${item.id}`} className='btn btn-primary'> <i className='bi bi-pencil'></i></Link> </td>
+                                            <td><Link to={`/admin/subcategory/update/${item.id}`} className='btn btn-primary'> <i className='bi bi-pencil'></i></Link> </td>
                                             <td><button className='btn btn-danger' onClick={() => deleteRecord(item.id)}> <i className='bi bi-trash'></i></button></td>
                                         </tr>
 
