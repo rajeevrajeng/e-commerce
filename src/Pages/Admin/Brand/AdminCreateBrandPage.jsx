@@ -6,10 +6,10 @@ import AdminSidebar from '../../../Components/AdminComponent/AdminSidebar'
 import TextValidators from '../../../FormValidators/TextValidators'
 import ImageValidators from '../../../FormValidators/ImageValidators'
 
-import { getSubcategory, createSubcategory } from "../../../Redux/ActionCreators/SubCategoryActionCreators"
+import { getBrand, createBrand } from "../../../Redux/ActionCreators/BrandActionCreators"
 
 
-export default function AdminCreateSubCategoryPage() {
+export default function AdminCreateBrandPage() {
     let [data, setData] = useState({
         name: '',
         pic: '',
@@ -26,9 +26,9 @@ export default function AdminCreateSubCategoryPage() {
 
     let [show, setShow] = useState(false)
 
-    // let [SubcategoryStateData, setSubcategoryStateData] = useState([])
+    // let [BrandStateData, setBrandStateData] = useState([])
 
-    let SubcategoryStateData = useSelector(state => state.SubcategoryStateData)
+    let BrandStateData = useSelector(state => state.BrandStateData)
     let dispatch = useDispatch()
 
     let navigate = useNavigate()
@@ -37,7 +37,7 @@ export default function AdminCreateSubCategoryPage() {
 
         let name = e.target.name
         // for image upload
-        let value = name === "pic" ? "subcategory/" + e.target.files[0].name : e.target.value
+        let value = name === "pic" ? "brand/" + e.target.files[0].name : e.target.value
 
         // if Real backend the below code use
         //let value = name === "pic" ? e.target.files[0].name : e.target.value
@@ -57,15 +57,15 @@ export default function AdminCreateSubCategoryPage() {
             setShow(true)
         else {
 
-            let item = SubcategoryStateData.find(x => x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
+            let item = BrandStateData.find(x => x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
 
             if (item) {
                 setShow(true)
-                setErrorMessage({ ...errorMessage, 'name': "Subcategory with This name is already exist" })
+                setErrorMessage({ ...errorMessage, 'name': "Brand with This name is already exist" })
                 return
             }
 
-            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory`, {
+            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory`, {
             //     method: "POST",
 
             //     headers: {
@@ -79,12 +79,12 @@ export default function AdminCreateSubCategoryPage() {
             // response = await response.json()
             
             // if (response)
-            //     navigate("/admin/subcategory")
+            //     navigate("/admin/maincategory")
             // else {
                 //     alert("Something Went Wrong")
                 // }
         
-                dispatch(createSubcategory({...data})) // in not real backend
+                dispatch(createBrand({...data})) // in not real backend
                 
                 /* 
                 if real backend then below code
@@ -93,9 +93,9 @@ export default function AdminCreateSubCategoryPage() {
                 formData.append("name", data.name)
                 formData.append("pic", data.pic)
                 formData.append("status", data.status)
-                dispatch(createSubcategory(formData)) */
+                dispatch(createBrand(formData)) */
 
-                navigate("/admin/subcategory")
+                navigate("/admin/brand")
         }
 
     }
@@ -103,7 +103,7 @@ export default function AdminCreateSubCategoryPage() {
     useEffect(() => {
 
         ( () => {
-            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory`, {
+            // let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/maincategory`, {
 
             //     method: "GET",
             //     headers: {
@@ -113,12 +113,12 @@ export default function AdminCreateSubCategoryPage() {
 
             // })
             // response = await response.json()
-            // setSubcategoryStateData(response)
+            // setBrandStateData(response)
 
-            dispatch(getSubcategory())
+            dispatch(getBrand())
         })()
 
-    }, [SubcategoryStateData.length])
+    }, [BrandStateData.length])
 
     return (
         <>
@@ -128,14 +128,14 @@ export default function AdminCreateSubCategoryPage() {
                         <AdminSidebar />
                     </div>
                     <div className="col-md-9">
-                        <h5 className='bg-primary text-light text-center p-2'>Create Subcategory
-                            <Link to="/admin/subcategory"><i className='bi bi-arrow-left text-light float-end'></i></Link>
+                        <h5 className='bg-primary text-light text-center p-2'>Create Brand
+                            <Link to="/admin/brand"><i className='bi bi-arrow-left text-light float-end'></i></Link>
                         </h5>
                         <form onSubmit={postData}>
                             <div className="row">
                                 <div className="col-12 mb-3">
                                     <label>Name <span className='text-danger'>*</span></label>
-                                    <input type='text' name='name' placeholder='Sub Category Name' onChange={getInputData} className={`form-control ${show && errorMessage.name ? 'border-danger' : 'border-primary'} `} />
+                                    <input type='text' name='name' placeholder='Brand Name' onChange={getInputData} className={`form-control ${show && errorMessage.name ? 'border-danger' : 'border-primary'} `} />
                                     {show && errorMessage.name ? <p className='text-danger'>{errorMessage.name}</p> : null}
                                 </div>
 

@@ -65,7 +65,7 @@ export default function Navbar() {
               <li><NavLink to="/aboutus">About Us</NavLink></li>
               <li><NavLink to="/shop">Shop</NavLink></li>
               <li><NavLink to="/feature">Feature</NavLink></li>
-              <li><NavLink to="/faq">Fqa</NavLink></li>
+              <li><NavLink to="/faq">Faq</NavLink></li>
               <li><NavLink to="/testimonial">Testimonial</NavLink></li>
               <li><NavLink to="/contactus">Contact Us</NavLink></li>
               <li><NavLink to="/admin">Admin</NavLink></li>

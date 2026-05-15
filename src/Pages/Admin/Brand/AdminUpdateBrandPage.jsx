@@ -6,9 +6,9 @@ import AdminSidebar from '../../../Components/AdminComponent/AdminSidebar'
 import TextValidators from '../../../FormValidators/TextValidators'
 import ImageValidators from '../../../FormValidators/ImageValidators'
 
-import { getSubcategory, updateSubcategory } from "../../../Redux/ActionCreators/SubCategoryActionCreators"
+import { getBrand, updateBrand } from "../../../Redux/ActionCreators/BrandActionCreators"
 
-export default function AdminUpdateSubCategoryPage() {
+export default function AdminUpdateBrandPage() {
     let { id } = useParams()
     let [data, setData] = useState({
         name: '',
@@ -26,9 +26,9 @@ export default function AdminUpdateSubCategoryPage() {
 
     let [show, setShow] = useState(false)
 
-    //let [SubcategoryStateData, setSubcategoryStateData] = useState([])
+    //let [BrandStateData, setBrandStateData] = useState([])
 
-    let SubcategoryStateData = useSelector(state => state.SubcategoryStateData)
+    let BrandStateData = useSelector(state => state.BrandStateData)
     let dispatch = useDispatch()
 
     let navigate = useNavigate()
@@ -37,7 +37,7 @@ export default function AdminUpdateSubCategoryPage() {
 
         let name = e.target.name
         // for image upload
-        let value = name === "pic" ? "subcategory/" + e.target.files[0].name : e.target.value
+        let value = name === "pic" ? "brand/" + e.target.files[0].name : e.target.value
 
         // if Real backend the below code use
         //let value = name === "pic" ? e.target.files[0].name : e.target.value
@@ -57,16 +57,16 @@ export default function AdminUpdateSubCategoryPage() {
             setShow(true)
         else {
 
-            let item = SubcategoryStateData.find(x => x.id !== id && x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
+            let item = BrandStateData.find(x => x.id !== id && x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
 
             if (item) {
                 setShow(true)
-                setErrorMessage({ ...errorMessage, 'name': "Subcategory with This name is already exist" })
+                setErrorMessage({ ...errorMessage, 'name': "Brand with This name is already exist" })
                 return
             }
 
 
-            /* let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory/${id}`, {
+            /* let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/brand/${id}`, {
                 method: "PUT",
 
                 headers: {
@@ -79,12 +79,12 @@ export default function AdminUpdateSubCategoryPage() {
 
             response = await response.json()
             if (response)
-                navigate("/admin/subcategory")
+                navigate("/admin/brand")
             else {
                 alert("Something Went Wrong")
             } */
 
-            dispatch(updateSubcategory({ ...data })) // in not real backend
+            dispatch(updateBrand({ ...data })) // in not real backend
 
             /* 
             if real backend then below code
@@ -94,9 +94,9 @@ export default function AdminUpdateSubCategoryPage() {
             formData.append("name", data.name)
             formData.append("pic", data.pic)
             formData.append("status", data.status)
-            dispatch(updateSubcategory(formData)) */
+            dispatch(updateBrand(formData)) */
 
-            navigate("/admin/subcategory")
+            navigate("/admin/brand")
         }
 
     }
@@ -104,22 +104,22 @@ export default function AdminUpdateSubCategoryPage() {
     useEffect(() => {
 
         (() => {
-            dispatch(getSubcategory())
-            if (SubcategoryStateData.length) {
-                let item = SubcategoryStateData.find(x => x.id == id)
+            dispatch(getBrand())
+            if (BrandStateData.length) {
+                let item = BrandStateData.find(x => x.id == id)
                 if (item)
                     setData({ ...data, ...item })
                 else
-                    navigate("/admin/subcategory")
+                    navigate("/admin/brand")
             }
         })()
 
-    }, [SubcategoryStateData.length])
+    }, [BrandStateData.length])
 
     /* useEffect(() => {
 
         (async () => {
-            let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory`, {
+            let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/brand`, {
 
                 method: "GET",
                 headers: {
@@ -134,11 +134,11 @@ export default function AdminUpdateSubCategoryPage() {
             let item = response.find(x => x.id === id)
             if (item) {
                 setData({ ...data, ...item })
-                setSubcategoryStateData(response)
+                setBrandStateData(response)
             }
             else
-                navigation("/admin/subcategory")
-            setSubcategoryStateData(response)
+                navigation("/admin/brand")
+            setBrandStateData(response)
         })()
 
     }, []) */
@@ -151,14 +151,14 @@ export default function AdminUpdateSubCategoryPage() {
                         <AdminSidebar />
                     </div>
                     <div className="col-md-9">
-                        <h5 className='bg-primary text-light text-center p-2'>Update Subcategory
-                            <Link to="/admin/subcategory"><i className='bi bi-arrow-left text-light float-end'></i></Link>
+                        <h5 className='bg-primary text-light text-center p-2'>Update Brand
+                            <Link to="/admin/brand"><i className='bi bi-arrow-left text-light float-end'></i></Link>
                         </h5>
                         <form onSubmit={postData}>
                             <div className="row">
                                 <div className="col-12 mb-3">
                                     <label>Name <span className='text-danger'>*</span></label>
-                                    <input type='text' name='name' value={data.name} onChange={getInputData} placeholder='Subcategory Name' className={`form-control ${show && errorMessage.name ? 'border-danger' : 'border-primary'} `} />
+                                    <input type='text' name='name' value={data.name} onChange={getInputData} placeholder='Brand Name' className={`form-control ${show && errorMessage.name ? 'border-danger' : 'border-primary'} `} />
                                     {show && errorMessage.name ? <p className='text-danger'>{errorMessage.name}</p> : null}
                                 </div>
 

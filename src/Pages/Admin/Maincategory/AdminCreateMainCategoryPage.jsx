@@ -135,7 +135,7 @@ export default function AdminCreateMainCategoryPage() {
                             <div className="row">
                                 <div className="col-12 mb-3">
                                     <label>Name <span className='text-danger'>*</span></label>
-                                    <input type='text' name='name' placeholder='Full Name' onChange={getInputData} className={`form-control ${show && errorMessage.name ? 'border-danger' : 'border-primary'} `} />
+                                    <input type='text' name='name' placeholder='Maincategory Name' onChange={getInputData} className={`form-control ${show && errorMessage.name ? 'border-danger' : 'border-primary'} `} />
                                     {show && errorMessage.name ? <p className='text-danger'>{errorMessage.name}</p> : null}
                                 </div>
 

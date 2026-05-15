@@ -4,40 +4,41 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import AdminSidebar from '../../../Components/AdminComponent/AdminSidebar'
 import TextValidators from '../../../FormValidators/TextValidators'
-import ImageValidators from '../../../FormValidators/ImageValidators'
+//import ImageValidators from '../../../FormValidators/ImageValidators'
 
-import { getSubcategory, updateSubcategory } from "../../../Redux/ActionCreators/SubCategoryActionCreators"
+import { getFeature, updateFeature } from "../../../Redux/ActionCreators/FeatureActionCreators"
 
-export default function AdminUpdateSubCategoryPage() {
+export default function AdminUpdateFeaturePage() {
     let { id } = useParams()
     let [data, setData] = useState({
         name: '',
-        pic: '',
+        icon: '',
+        description: '',
         status: true
     })
 
     // if Error Message showing
     let [errorMessage, setErrorMessage] = useState({
         name: "",
-        pic: ""
+        icon: "",
+        description: ""
     })
 
     // if Error Message not showing
 
     let [show, setShow] = useState(false)
 
-    //let [SubcategoryStateData, setSubcategoryStateData] = useState([])
+    //let [FeatureStateData, setFeatureStateData] = useState([])
 
-    let SubcategoryStateData = useSelector(state => state.SubcategoryStateData)
+    let FeatureStateData = useSelector(state => state.FeatureStateData)
     let dispatch = useDispatch()
 
     let navigate = useNavigate()
 
     function getInputData(e) {
 
-        let name = e.target.name
-        // for image upload
-        let value = name === "pic" ? "subcategory/" + e.target.files[0].name : e.target.value
+        let { name, value } = e.target
+
 
         // if Real backend the below code use
         //let value = name === "pic" ? e.target.files[0].name : e.target.value
@@ -46,7 +47,7 @@ export default function AdminUpdateSubCategoryPage() {
 
         setData({ ...data, [name]: name === "status" ? (value === "1" ? true : false) : value })
 
-        setErrorMessage({ ...errorMessage, [name]: name === "pic" ? ImageValidators(e) : TextValidators(e) })
+        setErrorMessage({ ...errorMessage, [name]: TextValidators(e) })
     }
 
     async function postData(e) {
@@ -57,34 +58,15 @@ export default function AdminUpdateSubCategoryPage() {
             setShow(true)
         else {
 
-            let item = SubcategoryStateData.find(x => x.id !== id && x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
+            let item = FeatureStateData.find(x => x.id !== id && x.name?.toLocaleLowerCase() === data.name?.toLocaleLowerCase())
 
             if (item) {
                 setShow(true)
-                setErrorMessage({ ...errorMessage, 'name': "Subcategory with This name is already exist" })
+                setErrorMessage({ ...errorMessage, 'name': "Feature with This name is already exist" })
                 return
             }
 
-
-            /* let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory/${id}`, {
-                method: "PUT",
-
-                headers: {
-
-                    "context-type": "application/json"
-                },
-                //javascript to json convert
-                body: JSON.stringify({ ...data })
-            })
-
-            response = await response.json()
-            if (response)
-                navigate("/admin/subcategory")
-            else {
-                alert("Something Went Wrong")
-            } */
-
-            dispatch(updateSubcategory({ ...data })) // in not real backend
+            dispatch(updateFeature({ ...data })) // in not real backend
 
             /* 
             if real backend then below code
@@ -94,9 +76,9 @@ export default function AdminUpdateSubCategoryPage() {
             formData.append("name", data.name)
             formData.append("pic", data.pic)
             formData.append("status", data.status)
-            dispatch(updateSubcategory(formData)) */
+            dispatch(updateFeature(formData)) */
 
-            navigate("/admin/subcategory")
+            navigate("/admin/feature")
         }
 
     }
@@ -104,44 +86,17 @@ export default function AdminUpdateSubCategoryPage() {
     useEffect(() => {
 
         (() => {
-            dispatch(getSubcategory())
-            if (SubcategoryStateData.length) {
-                let item = SubcategoryStateData.find(x => x.id == id)
+            dispatch(getFeature())
+            if (FeatureStateData.length) {
+                let item = FeatureStateData.find(x => x.id == id)
                 if (item)
                     setData({ ...data, ...item })
                 else
-                    navigate("/admin/subcategory")
+                    navigate("/admin/feature")
             }
         })()
 
-    }, [SubcategoryStateData.length])
-
-    /* useEffect(() => {
-
-        (async () => {
-            let response = await fetch(`${import.meta.env.VITE_APP_BACKEND_SERVER}/subcategory`, {
-
-                method: "GET",
-                headers: {
-
-                    "context-type": "application/json"
-                }
-
-            })
-            response = await response.json()
-
-            //  for edit recond
-            let item = response.find(x => x.id === id)
-            if (item) {
-                setData({ ...data, ...item })
-                setSubcategoryStateData(response)
-            }
-            else
-                navigation("/admin/subcategory")
-            setSubcategoryStateData(response)
-        })()
-
-    }, []) */
+    }, [FeatureStateData.length])
 
     return (
         <>
@@ -151,21 +106,27 @@ export default function AdminUpdateSubCategoryPage() {
                         <AdminSidebar />
                     </div>
                     <div className="col-md-9">
-                        <h5 className='bg-primary text-light text-center p-2'>Update Subcategory
-                            <Link to="/admin/subcategory"><i className='bi bi-arrow-left text-light float-end'></i></Link>
+                        <h5 className='bg-primary text-light text-center p-2'>Update Feature
+                            <Link to="/admin/feature"><i className='bi bi-arrow-left text-light float-end'></i></Link>
                         </h5>
                         <form onSubmit={postData}>
                             <div className="row">
                                 <div className="col-12 mb-3">
                                     <label>Name <span className='text-danger'>*</span></label>
-                                    <input type='text' name='name' value={data.name} onChange={getInputData} placeholder='Subcategory Name' className={`form-control ${show && errorMessage.name ? 'border-danger' : 'border-primary'} `} />
+                                    <input type='text' name='name' value={data.name} onChange={getInputData} placeholder='Feature Name' className={`form-control ${show && errorMessage.name ? 'border-danger' : 'border-primary'} `} />
                                     {show && errorMessage.name ? <p className='text-danger'>{errorMessage.name}</p> : null}
                                 </div>
 
+                                <div className="col-12 mb-3">
+                                    <label>Description <span className='text-danger'>*</span></label>
+                                    <textarea name='description' value={data.description} rows="3" placeholder='Description' onChange={getInputData} className={`form-control ${show && errorMessage.description ? 'border-danger' : 'border-primary'} `}></textarea>
+                                    {show && errorMessage.description ? <p className='text-danger'>{errorMessage.description}</p> : null}
+                                </div>
+
                                 <div className="col-6 mb-3">
-                                    <label>Pic </label>
-                                    <input type='file' name='pic' onChange={getInputData} className={`form-control ${show && errorMessage.pic ? 'border-danger' : 'border-primary'} `} />
-                                    {show && errorMessage.pic ? <p className='text-danger'>{errorMessage.name}</p> : null}
+                                    <label>Icon <span className='text-danger'>*</span></label>
+                                    <input type='text' name='icon' value={data.icon} placeholder='Boostrap Icon Tag' onChange={getInputData} className={`form-control ${show && errorMessage.icon ? 'border-danger' : 'border-primary'} `} />
+                                    {show && errorMessage.icon ? <p className='text-danger'>{errorMessage.icon}</p> : null}
                                 </div>
 
                                 <div className="col-6 mb-3">

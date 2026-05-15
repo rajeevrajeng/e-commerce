@@ -19,7 +19,7 @@ export default function AdminSidebar() {
                 </Link>
                 <Link to="/admin/feature" className="list-group-item d-flex gap-2 list-group-item-action" aria-current="true"><i className='fs-5 bi bi-view-list'></i><span>Feature</span>
                 </Link>
-                <Link to="/admin/fqa" className="list-group-item d-flex gap-2 list-group-item-action" aria-current="true"><i className='fs-5 bi bi-question-circle'></i><span>Faq</span>
+                <Link to="/admin/faq" className="list-group-item d-flex gap-2 list-group-item-action" aria-current="true"><i className='fs-5 bi bi-question-circle'></i><span>Faq</span>
                 </Link>
 
                 <Link to="/admin/setting" className="list-group-item d-flex gap-2 list-group-item-action" aria-current="true"><i className='fs-5 bi bi-gear'></i><span>Setting</span>

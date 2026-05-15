@@ -8,7 +8,6 @@ import FaqReducer from "./FaqReducer";
 import SettingReducer from "./SettingReducer";
 
 export default combineReducers({
-
     MaincategoryStateData: MaincategoryReducer,
     SubcategoryStateData: SubcategoryReducer,
     BrandStateData: BrandReducer,
@@ -16,6 +15,4 @@ export default combineReducers({
     FeatureStateData: FeatureReducer,
     FaqStateData: FaqReducer,
     SettingStateData: SettingReducer
-
-
 })
